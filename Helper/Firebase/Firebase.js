@@ -7,7 +7,6 @@ import {
   remove,
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
 import { database } from "./Config.js";
-let getStorage = [];
 
 export const BillingStatement = (data, dbName) => {
   const stmtRef = ref(database, dbName);
@@ -18,12 +17,36 @@ export const BillingStatement = (data, dbName) => {
     .catch((err) => console.error("Error Saving:", err));
 };
 
-export const getBillingStatement = (dbName, callback) => {
-  const stmtRef = ref(database, dbName);
+export const getBillingStatement = (dbName) => {
+  // const stmtRef = ref(database, dbName);
 
-  onValue(stmtRef, (snapshot, index) => {
-    const data = snapshot.val();
-    callback(data);
+  // onValue(stmtRef, (snapshot) => {
+  //   const data = snapshot.val();
+  //   for (const [key, value] of Object.entries(data)) {
+  //     getStorage.push(value);
+  //   }
+  // });
+  // return getStorage
+  return new Promise((resolve, reject) => {
+    const stmtRef = ref(database, dbName);
+    onValue(
+      stmtRef,
+      (response) => {
+        const res = response.val();
+        if (res) {
+          const getStorage = [];
+          for (const [key, value] of Object.entries(res)) {
+            getStorage.push(value);
+          }
+          resolve(getStorage);
+        } else {
+          resolve([]);
+        }
+      },
+      (err) => {
+        reject(err);
+      }
+    );
   });
 };
 

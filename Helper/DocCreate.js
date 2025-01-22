@@ -40,7 +40,7 @@ class DocCreate {
     }
   }
 
-  button(type, idName, classList, value, textContent, onclick) {
+  button(type, idName, classList, value, textContent, onClick) {
     const button = document.createElement(this.element);
     button.type = type;
     button.id = idName;
@@ -48,7 +48,7 @@ class DocCreate {
     button.classList.add(classList);
     button.value = value;
     button.textContent = textContent;
-    button.onClick = () => onclick();
+    button.onclick = onClick;
     this.container.appendChild(button);
 
     return button;

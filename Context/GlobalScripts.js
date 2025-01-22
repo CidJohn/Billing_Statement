@@ -49,9 +49,18 @@ export const handleTextline = (e) => {
 };
 
 export const handleFrmMngmt = (e) => {
-  e.preventDefault();
+  // e.preventDefault();
   const dtFrom = $("#dtFrom").val();
   const dtTo = $("#dtTo").val();
   formBilling = { ...formBilling, dtFrom, dtTo };
   BillingStatement(formBilling, "billingStatement");
+  window.location.hash = "/statements";
+};
+
+export const handleOnEdit = (item) => {
+  console.log(item);
+};
+
+export const handleOnDelete = (item) => {
+  console.log(item);
 };

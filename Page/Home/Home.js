@@ -3,9 +3,6 @@ import Local from "../../Helper/Storage/LocalStore.js";
 import { handleFrmMngmt } from "../../Context/GlobalScripts.js";
 import { frmTexline } from "../../Content/frmTexline.js";
 import HomeScript from "./HomeScript.js";
-import { getBillingStatement } from "../../Helper/Firebase/Firebase.js";
-// import Table from "../../Components/Table/Table.js";
-// import { sampleTable } from "../../Content/sampleTable.js";
 
 function Home(container) {
   const userStorage = new Local("userData");
@@ -89,24 +86,6 @@ function Home(container) {
       }
     }
   });
-  // const { col, row } = sampleTable[0];
-  // const disCol = ["Date", "Incoming", "Outgoing"];
-  // Table(frmField, col, row, disCol);
-  //let row = [];
-  getBillingStatement("billingStatement", (data) => {
-    const i = new Date();
-    for (const [key, value] of Object.entries(data)) {
-      // let from = new Date(value.dtFrom);
-      // let to = new Date(value.dtTo);
-      // const daysDiff = Math.ceil((to - from) / (1000 * 60 * 60 * 24));
-      // for (let i = 0; i <= daysDiff; i++) {
-      //   const currentDate = new Date(from);
-      //   currentDate.setDate(from.getDate() + i);
-      //   //console.log(currentDate.toISOString().split("T")[0]);
-      // }
-    }
-  });
-  // console.log(row);
 
   HomeScript();
   return home.element;

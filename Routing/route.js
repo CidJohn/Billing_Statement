@@ -4,12 +4,14 @@ import Contact from "../Page/Contact/Contact.js";
 import Home from "../Page/Home/Home.js";
 import Login from "../Page/Login/Login.js";
 import Logout from "../Page/Login/Logout/Logout.js";
+import Statement from "../Page/Statement/Statement.js";
 
 function route(main, status) {
   const routes = {
-    "/": () => !status[0] ? Login(main): Home(main),
+    "/": () => (!status[0] ? Login(main) : Home(main)),
     "/about": () => About(main),
     "/contact": () => Contact(main),
+    "/statements": () => Statement(main),
     "/logout": () => Logout(main),
   };
 

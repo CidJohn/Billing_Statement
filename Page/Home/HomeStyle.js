@@ -14,7 +14,7 @@ function HomeStyle() {
       display: "flex",
       "flex-direction": "column",
       "align-items": "center",
-      padding: "20px",
+      padding: "20px 0 0 0",
     });
 
     title.css({
@@ -36,7 +36,7 @@ function HomeStyle() {
 
     formCont.css({
       width: "auto",
-      "max-width": "82%",
+      "max-width": "80%",
       "justify-content": "center",
       "align-items": "center",
       padding: "20px",
