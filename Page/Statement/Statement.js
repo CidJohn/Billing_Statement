@@ -8,8 +8,12 @@ async function Statement(container) {
   url.search = "";
   window.history.replaceState({}, document.title, url.toString());
   const divState = new DocCreate(container, "div");
-  const state = divState.div("state", "state");
 
+  const state = divState.div("state", "main-state");
+
+  const titleDiv = new DocCreate(state, "div")
+  titleDiv.div("", "hd-title", "Billing Statement List");
+  
   // const { col, row } = sampleTable[0];
   // const disCol = ["Date", "Incoming", "Outgoing"];
   // Table(frmField, col, row, disCol);
