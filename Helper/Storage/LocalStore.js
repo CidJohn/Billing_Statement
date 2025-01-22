@@ -1,4 +1,4 @@
-class Local {
+class LocalStore {
   constructor(storageName, useSession = false, id, time) {
     this.id = id;
     this.storageName = storageName;
@@ -47,4 +47,4 @@ class Local {
   }
 }
 
-export default Local;
+export default LocalStore;

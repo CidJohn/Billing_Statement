@@ -1,5 +1,5 @@
 import DocCreate from "../../Helper/DocCreate.js";
-import Local from "../../Helper/Storage/local.js";
+import Local from "../../Helper/Storage/LocalStore.js";
 import { handleFrmMngmt } from "../../Context/GlobalScripts.js";
 import { frmTexline } from "../../Content/frmTexline.js";
 import HomeScript from "./HomeScript.js";
@@ -106,7 +106,7 @@ function Home(container) {
       // }
     }
   });
- // console.log(row);
+  // console.log(row);
 
   HomeScript();
   return home.element;

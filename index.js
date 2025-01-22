@@ -1,11 +1,11 @@
 import Navbar from "./Components/Navbar/Navbar.js";
 import DocCreate from "./Helper/DocCreate.js";
+import LocalStore from "./Helper/Storage/LocalStore.js";
 import route from "./Routing/route.js";
-import Local from "./Helper/Storage/local.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById("root");
-  const activate = new Local("status");
+  const activate = new LocalStore("status");
   const activateRem = new Local("status", true);
   const status = activate.Read();
   const statusRem = activateRem.Read();

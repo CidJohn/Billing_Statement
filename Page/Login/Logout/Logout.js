@@ -1,11 +1,11 @@
-import Local from "../../../Helper/Storage/local.js";
 import DocCreate from "../../../Helper/DocCreate.js";
+import LocalStore from "../../../Helper/Storage/LocalStore.js";
 
 const Logout = (main) => {
-  const status = new Local("status");
-  const statusRem = new Local("status", true);
-  const userData = new Local("userData");
-  const userDataRem = new Local("userData", true);
+  const status = new LocalStore("status");
+  const statusRem = new LocalStore("status", true);
+  const userData = new LocalStore("userData");
+  const userDataRem = new LocalStore("userData", true);
   status.DeleteStorage();
   userData.DeleteStorage();
   statusRem.DeleteStorage();

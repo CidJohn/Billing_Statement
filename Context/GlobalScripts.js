@@ -1,7 +1,7 @@
 import { frmTexline } from "../Content/frmTexline.js";
 import { defaultUsers, loginTextline } from "../Content/loginTextline.js";
 import { BillingStatement } from "../Helper/Firebase/Firebase.js";
-import Local from "../Helper/Storage/local.js";
+import LocalStore from "../Helper/Storage/LocalStore.js";
 
 let loginInput = {};
 let formBilling = [];
@@ -27,9 +27,9 @@ export const handleFormLogin = (e) => {
   if (!userLogin) {
     return alert("Wrong Username or Password!");
   }
-  const storage = new Local("status", chkRemember);
+  const storage = new LocalStore("status", chkRemember);
   storage.Create("active");
-  const userStorage = new Local("userData", chkRemember);
+  const userStorage = new LocalStore("userData", chkRemember);
   userStorage.Create(userLogin);
 };
 
