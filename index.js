@@ -1,8 +1,6 @@
-import GlobalStyle from "./Context/GlobalStyle.js";
 import Navbar from "./Components/Navbar/Navbar.js";
 import DocCreate from "./Helper/DocCreate.js";
 import route from "./Routing/route.js";
-import Login from "./Page/Login/Login.js";
 import Local from "./Helper/Storage/local.js";
 
 document.addEventListener("DOMContentLoaded", () => {
