@@ -6,7 +6,7 @@ import route from "./Routing/route.js";
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById("root");
   const activate = new LocalStore("status");
-  const activateRem = new Local("status", true);
+  const activateRem = new LocalStore("status", true);
   const status = activate.Read();
   const statusRem = activateRem.Read();
 
