@@ -1,4 +1,5 @@
 import DocCreate from "../../Helper/DocCreate.js";
+import TableScript from "./TableScript.js";
 import TableStyle from "./TableStyle.js";
 
 function Table(container, col, row, disCol = []) {
@@ -23,6 +24,7 @@ function Table(container, col, row, disCol = []) {
   let totalAmount = 0;
   const tblBody = new DocCreate(tbl, "tbody");
   const tbody = tblBody.div("", "", "");
+
   if (row) {
     row.forEach((dataRow) => {
       const tblRow = new DocCreate(tbody, "tr");
@@ -34,11 +36,11 @@ function Table(container, col, row, disCol = []) {
         const textline = new DocCreate(input, "input");
 
         const isDisabled = disCol.includes(header);
-
+        const amountColumn = header === "Amount";
         textline.textline(
           "text",
-          "sample",
-          "class-sample",
+          `txt${header}`,
+          amountColumn ? "txtAmount" : "class-sample",
           "",
           false,
           dataRow[header] || "",
@@ -46,8 +48,9 @@ function Table(container, col, row, disCol = []) {
           isDisabled
         );
       });
-      if (dataRow.Amount !== undefined && !isNaN(dataRow.Amount)) {
-        totalAmount += parseFloat(dataRow.Amount);
+      const txtAmount = $("#txtAmount").val();
+      if (txtAmount !== undefined && !isNaN(txtAmount)) {
+        totalAmount += parseFloat(txtAmount);
       }
     });
     const totalRow = new DocCreate(tbody, "tr");
@@ -55,9 +58,9 @@ function Table(container, col, row, disCol = []) {
 
     col.forEach((header) => {
       const td = new DocCreate(totalRowDiv, "td");
-      
+
       if (header === "No. of trip") {
-        td.div("", "total-amount", `Total: `);
+        td.div("", "txt-total", `Total: `);
       } else if (header === "Amount") {
         td.div("", "total-amount", ` ${totalAmount.toFixed(2)}`);
       } else {
@@ -66,6 +69,7 @@ function Table(container, col, row, disCol = []) {
     });
   }
 
+  TableScript();
   TableStyle();
 }
 
