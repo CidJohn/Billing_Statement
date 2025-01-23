@@ -13,10 +13,12 @@ function Modal(container) {
   header.div("btnClose", "btn-close", "X");
 
   const body = new DocCreate(bodyContent, "div");
-  body.div("content", "cont", "body");
+  const content = body.div("content", "body-cont", "");
 
   ModalStyle();
   ModalScript();
+
+  return content;
 }
 
 export default Modal;

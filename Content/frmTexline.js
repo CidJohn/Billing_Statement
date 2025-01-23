@@ -103,6 +103,16 @@ export const frmTexline = [
     div: "form-group-three",
     text: [
       {
+        label: "Amount",
+        type: "number",
+        idName: "txtAmount",
+        value: "",
+        placeholder: "Enter Amount",
+        classlist: "form-control",
+        req: true,
+        handleLoginText: (e) => handleTextline(e),
+      },
+      {
         label: "Time In",
         type: "time",
         idName: "txtTimeIn",

@@ -1,11 +1,11 @@
 function ModalStyle() {
   $(".modal-cont").css({
     border: "1px solid black",
-    width: "50%",
+    width: "60%",
     padding: "10px",
     position: "absolute",
     top: "140px",
-    left: "300px",
+    margin: "0 20% 0 20%",
     display: "none",
     "flex-direction": "column",
     gap: "10px",
@@ -26,9 +26,15 @@ function ModalStyle() {
   $(" .body-modal-cont").css({
     border: "1px solid black",
     display: "flex",
-    padding: "0 10px 0 10px",
     height: "40vh",
     "max-height": "40vh",
+    "justify-content": "center",
+  });
+  $(".body-cont").css({
+    width: "auto",
+    display: "flex",
+    //"justify-content": "center",
+    "overflow-y": "auto",
   });
 }
 
