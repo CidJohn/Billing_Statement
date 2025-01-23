@@ -13,6 +13,7 @@ export const frmTexline = [
         placeholder: "Number of Billing",
         classlist: "form-control",
         req: true,
+        disabled: true,
         handleLoginText: (e) => handleTextline(e),
       },
       {

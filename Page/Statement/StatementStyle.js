@@ -14,6 +14,7 @@ function StatementStyle() {
     "margin-bottom": "10px",
     "text-align": "center",
   });
+
 }
 
 export default StatementStyle;
