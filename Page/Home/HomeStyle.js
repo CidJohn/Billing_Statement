@@ -19,7 +19,7 @@ function HomeStyle() {
 
     title.css({
       "font-size": "32px",
-      "font-family": "Arial, sans-serif",
+      "font-family": "sans-serif",
       "font-weight": "600",
       color: "#333",
       "margin-bottom": "10px",
@@ -27,7 +27,7 @@ function HomeStyle() {
 
     welcome.css({
       "font-size": "16px",
-      "font-family": "Arial, sans-serif",
+      "font-family": "sans-serif",
       "text-align": "center",
       "font-weight": "400",
       color: "#666",
@@ -59,6 +59,7 @@ function HomeStyle() {
       "border-radius": "5px",
       border: "1px solid #ccc",
       "font-size": "14px",
+      "font-family": "sans-serif",
     });
 
     controlForm.hover(
@@ -108,6 +109,7 @@ function HomeStyle() {
     "font-weight": "500",
     color: "#333",
     margin: "5px 0",
+    "font-family": "sans-serif",
   });
 
   $(".frms-sublabel").css({
@@ -115,6 +117,7 @@ function HomeStyle() {
     "font-weight": "400",
     color: "#555",
     margin: "5px 0",
+    "font-family": "sans-serif",
   });
 
   $(".frms-fromto").css({
@@ -136,6 +139,7 @@ function HomeStyle() {
     background: "transparent",
     border: "1px solid #ccc",
     "border-radius": "5px",
+    "font-family": "sans-serif",
   });
 
   $(".btn-submit").hover(

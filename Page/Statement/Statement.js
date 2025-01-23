@@ -32,7 +32,16 @@ async function Statement(container) {
   const body = Modal(state);
   const { col } = sampleTable;
   setTimeout(() => {
-    Table(body, col, stateRow);
+    if (stateRow.length > 0) {
+      Table(body, col, stateRow);
+      const btnDiv = new DocCreate(body, "div");
+      const contBtn = btnDiv.div("btnCont", "btn-cont", "");
+      const btn = new DocCreate(contBtn, "button");
+      btn.button("button", "btnPrint", "btn-print", "", "Print");
+    } else {
+      const reload = new DocCreate(body, "div");
+      reload.div("", "", "Please Reload!");
+    }
   }, 2000);
 }
 
