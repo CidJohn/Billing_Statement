@@ -8,9 +8,9 @@ function Modal(container) {
   const div2 = new DocCreate(modalContent, "div");
   const headContent = div2.div("", "hd-modal-cont", "");
   const bodyContent = div2.div("", "body-modal-cont", "");
-  const header = new DocCreate(headContent, "h1");
+  const header = new DocCreate(headContent, "h2");
   header.div("mdlTitle", "mdl-title", "");
-  header.div("btnClose", "btn-close", "X");
+  header.div("btnClose", "btn-close", "x");
 
   const body = new DocCreate(bodyContent, "div");
   const content = body.div("content", "body-cont", "");

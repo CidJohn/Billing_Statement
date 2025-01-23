@@ -20,7 +20,7 @@ function Table(container, col, row, disCol = []) {
       th.div("", "", header);
     });
   }
-
+  let totalAmount = 0;
   const tblBody = new DocCreate(tbl, "tbody");
   const tbody = tblBody.div("", "", "");
   if (row) {
@@ -46,6 +46,23 @@ function Table(container, col, row, disCol = []) {
           isDisabled
         );
       });
+      if (dataRow.Amount !== undefined && !isNaN(dataRow.Amount)) {
+        totalAmount += parseFloat(dataRow.Amount);
+      }
+    });
+    const totalRow = new DocCreate(tbody, "tr");
+    const totalRowDiv = totalRow.div("", "", "");
+
+    col.forEach((header) => {
+      const td = new DocCreate(totalRowDiv, "td");
+      
+      if (header === "No. of trip") {
+        td.div("", "total-amount", `Total: `);
+      } else if (header === "Amount") {
+        td.div("", "total-amount", ` ${totalAmount.toFixed(2)}`);
+      } else {
+        td.div("", "", "");
+      }
     });
   }
 

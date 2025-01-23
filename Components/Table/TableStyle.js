@@ -18,8 +18,9 @@ function TableStyle() {
   });
 
   $(".tbl-list th").css({
-    "background-color": "#4CAF50",
-    color: "white",
+    //"background-color": "#4CAF50",
+    //color: "white",
+    "font-family": "sans-serif",
   });
 
   $(".tbl-list tr:nth-child(even)").css({
@@ -34,6 +35,7 @@ function TableStyle() {
     background: "transparent",
     width: "70px",
     "text-align": "center",
+    "font-family": "sans-serif",
   });
   $(".class-sample").focus(
     function () {
@@ -53,6 +55,7 @@ function TableStyle() {
       outline: "none",
     });
   });
+  
 }
 
 export default TableStyle;
