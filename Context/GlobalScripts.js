@@ -6,7 +6,6 @@ import LocalStore from "../Helper/Storage/LocalStore.js";
 let loginInput = {};
 let formBilling = [];
 let chkRemember = false;
-let modalOpen = false;
 let stateData = [];
 
 export const handleLoginText = (e) => {
@@ -60,12 +59,36 @@ export const handleFrmMngmt = (e) => {
 };
 
 export const handleOnEdit = (item) => {
-  // console.log(item);
   $("#mdlTitle").replaceWith(`<h2>${item.txtDriverName}</h2>`);
   $(".modal-cont").css({
     display: "flex",
   });
+  let from = new Date(item.dtFrom);
+  let to = new Date(item.dtTo);
+  const daysDiff = Math.ceil((to - from) / (1000 * 60 * 60 * 24));
+
+  for (let i = 0; i <= daysDiff; i++) {
+    const currentDate = new Date(from);
+    currentDate.setDate(from.getDate() + i);
+
+    if (currentDate.getDay() !== 0) {
+      //console.log(currentDate.toISOString().split("T")[0]);
+      //console.log(currentDate.getDay());
+      const date = currentDate.toISOString().split("T")[0];
+      const Data = {
+        Date: date,
+        Incoming: item.txtAssignedRoute,
+        "Time In": item.txtTimeIn,
+        Outgoing: item.txtAssignedRoute,
+        "Time out": item.txtTimeOut,
+        "No. of trip": item.txtTrip,
+        Amount: item.txtAmount,
+      };
+      stateData.push(Data);
+    }
+  }
 };
+export const stateRow = stateData;
 
 export const handleOnDelete = (item) => {
   console.log(item);

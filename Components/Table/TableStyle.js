@@ -7,7 +7,7 @@ function TableStyle() {
   });
 
   $(".tbl-list table").css({
-    width: "100%",
+    width: "auto",
     "border-collapse": "collapse",
   });
 
@@ -32,7 +32,7 @@ function TableStyle() {
   $(".class-sample").css({
     border: "none",
     background: "transparent",
-    width: "100px",
+    width: "70px",
     "text-align": "center",
   });
   $(".class-sample").focus(

@@ -1,4 +1,5 @@
 import DocCreate from "../../Helper/DocCreate.js";
+import TableStyle from "./TableStyle.js";
 
 function Table(container, col, row, disCol = []) {
   const div = new DocCreate(container, "div");
@@ -14,37 +15,41 @@ function Table(container, col, row, disCol = []) {
 
   const theadrow = tblHeaderRow.div("", "", "");
   const th = new DocCreate(theadrow, "th");
-
-  col.forEach((header) => {
-    th.div("", "", header);
-  });
+  if (col) {
+    col.forEach((header) => {
+      th.div("", "", header);
+    });
+  }
 
   const tblBody = new DocCreate(tbl, "tbody");
   const tbody = tblBody.div("", "", "");
+  if (row) {
+    row.forEach((dataRow) => {
+      const tblRow = new DocCreate(tbody, "tr");
+      const tbodyrow = tblRow.div("", "", "");
+      col.forEach((header, colIndex) => {
+        const td = new DocCreate(tbodyrow, "td");
 
-  row.forEach((dataRow) => {
-    const tblRow = new DocCreate(tbody, "tr");
-    const tbodyrow = tblRow.div("", "", "");
-    col.forEach((header, colIndex) => {
-      const td = new DocCreate(tbodyrow, "td");
+        const input = td.div("", "", "");
+        const textline = new DocCreate(input, "input");
 
-      const input = td.div("", "", "");
-      const textline = new DocCreate(input, "input");
+        const isDisabled = disCol.includes(header);
 
-      const isDisabled = disCol.includes(header);
-
-      textline.textline(
-        "text",
-        "sample",
-        "class-sample",
-        "",
-        false,
-        dataRow[header] || "",
-        null,
-        isDisabled
-      );
+        textline.textline(
+          "text",
+          "sample",
+          "class-sample",
+          "",
+          false,
+          dataRow[header] || "",
+          null,
+          isDisabled
+        );
+      });
     });
-  });
+  }
+
+  TableStyle();
 }
 
 export default Table;
