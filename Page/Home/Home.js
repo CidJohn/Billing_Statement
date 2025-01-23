@@ -50,7 +50,8 @@ function Home(container) {
           txtItem.placeholder,
           txtItem.req,
           txtItem.value,
-          txtItem.handleLoginText
+          txtItem.handleLoginText,
+          txtItem.disabled
         );
         if (txtItem.dateInput) {
           const date = FormOne2.div("", "frms-fromto", ``);

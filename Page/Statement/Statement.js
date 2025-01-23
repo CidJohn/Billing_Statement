@@ -1,4 +1,5 @@
 import List from "../../Components/List/List.js";
+import Modal from "../../Components/Modal/Modal.js";
 import { handleOnDelete, handleOnEdit } from "../../Context/GlobalScripts.js";
 import DocCreate from "../../Helper/DocCreate.js";
 import { getBillingStatement } from "../../Helper/Firebase/Firebase.js";
@@ -11,9 +12,9 @@ async function Statement(container) {
 
   const state = divState.div("state", "main-state");
 
-  const titleDiv = new DocCreate(state, "div")
+  const titleDiv = new DocCreate(state, "div");
   titleDiv.div("", "hd-title", "Billing Statement List");
-  
+
   // const { col, row } = sampleTable[0];
   // const disCol = ["Date", "Incoming", "Outgoing"];
   // Table(frmField, col, row, disCol);
@@ -21,6 +22,8 @@ async function Statement(container) {
   const row = await getBillingStatement("billingStatement");
 
   List(state, row, handleOnEdit, handleOnDelete);
+  
+  Modal(state);
 }
 
 export default Statement;

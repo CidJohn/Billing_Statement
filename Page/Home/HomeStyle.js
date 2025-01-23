@@ -100,6 +100,7 @@ function HomeStyle() {
     "flex-direction": "column",
     "flex-wrap": "wrap",
     gap: "5px",
+    width: "25%",
   });
 
   $(".frms-label").css({
@@ -121,6 +122,7 @@ function HomeStyle() {
     gap: "5px",
     "flex-direction": "column",
   });
+
   $(".form-group-btn").css({
     width: "100%",
     padding: "10px",

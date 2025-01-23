@@ -6,6 +6,8 @@ import LocalStore from "../Helper/Storage/LocalStore.js";
 let loginInput = {};
 let formBilling = [];
 let chkRemember = false;
+let modalOpen = false;
+let stateData = [];
 
 export const handleLoginText = (e) => {
   const id = e.target.id;
@@ -58,7 +60,11 @@ export const handleFrmMngmt = (e) => {
 };
 
 export const handleOnEdit = (item) => {
-  console.log(item);
+  // console.log(item);
+  $("#mdlTitle").replaceWith(`<h2>${item.txtDriverName}</h2>`);
+  $(".modal-cont").css({
+    display: "flex",
+  });
 };
 
 export const handleOnDelete = (item) => {

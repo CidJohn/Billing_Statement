@@ -8,6 +8,13 @@ function List(container, items, handleOnEdit, handleOnDelete) {
   const ul = ulList.div("", "lst-ul", "");
   const li = new DocCreate(ul, "li");
   if (items) {
+    const hdlist = li.div("", "hd-lst-state", "");
+    const hddiv2 = new DocCreate(hdlist, "div");
+    const hdtitlediv = hddiv2.div("", "hd-data", ``);
+    const hdtitle = new DocCreate(hdtitlediv, "span");
+    hdtitle.div("", "hd-no", `No`);
+    hdtitle.div("", "hd-date", ` Date`);
+    hdtitle.div("", "hd-name", `Name`);
     items.forEach((item, index) => {
       const list = li.div("", "lst-state", "");
       const div2 = new DocCreate(list, "div");
