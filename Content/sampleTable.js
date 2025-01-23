@@ -9,6 +9,7 @@ export const sampleTable = {
     "Amount",
     "Remarks",
   ],
+  disCol: ["Date", "Incoming", "Outgoing"],
   row: [
     {
       Date: "01-21-2025",

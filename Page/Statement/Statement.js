@@ -30,10 +30,10 @@ async function Statement(container) {
   List(state, row, handleOnEdit, handleOnDelete);
 
   const body = Modal(state);
-  const { col } = sampleTable;
+  const { col, disCol } = sampleTable;
   setTimeout(() => {
     if (stateRow.length > 0) {
-      Table(body, col, stateRow);
+      Table(body, col, stateRow, disCol);
       const btnDiv = new DocCreate(body, "div");
       const contBtn = btnDiv.div("btnCont", "btn-cont", "");
       const btn = new DocCreate(contBtn, "button");

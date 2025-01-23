@@ -30,14 +30,14 @@ function TableStyle() {
   $(".tbl-list tr:hover").css({
     "background-color": "#ddd",
   });
-  $(".class-sample").css({
+  $(".class-sample, .txtAmount").css({
     border: "none",
     background: "transparent",
     width: "70px",
     "text-align": "center",
     "font-family": "sans-serif",
   });
-  $(".class-sample").focus(
+  $(".class-sample, .txtAmount").focus(
     function () {
       $(this).css({
         border: "none",
@@ -49,13 +49,12 @@ function TableStyle() {
       });
     }
   );
-  $(".class-sample").hover(function () {
+  $(".class-sample, .txtAmount").hover(function () {
     $(this).css({
       border: "none",
       outline: "none",
     });
   });
-  
 }
 
 export default TableStyle;
