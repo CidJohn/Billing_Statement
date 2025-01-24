@@ -14,7 +14,6 @@ function GlobalStyle(selector) {
     about: AboutStyle,
     login: LoginStyle,
     logout: LogoutStyle,
-    table: TableStyle,
     statements: StatementStyle,
   };
 

@@ -17,21 +17,28 @@ function ListStyle() {
     "overflow-y": "auto",
   });
 
-  $(".lst-state").css({
+  $(".lst-state, .hd-lst-state").css({
     display: "flex",
     "justify-content": "space-between",
     "border-bottom": "1px solid gray",
     padding: "5px 0 5px 0",
   });
-  $(".lst-data").css({
+  $(".hd-lst-state").css({
+    "font-weight": "600",
+  });
+  $(".lst-data, .hd-data").css({
     display: "flex",
     gap: "10px",
     "align-items": "center",
   });
-  $("span").css({
-    "font-size": "20px",
-  });
 
+  $("span").css({
+    "font-size": "14px",
+    "font-family": "sans-serif",
+  });
+  $(".hd-data .hd-date, .hd-name").css({
+    padding: "0 20px 0 15px",
+  });
   $(".lst-btn").css({
     gap: "10px",
     display: "flex",
@@ -43,8 +50,21 @@ function ListStyle() {
     background: "transparent",
     border: "1px solid #ccc",
     "border-radius": "5px",
-    "font-family": "Arial, sans-serif",
+    "font-family": "sans-serif",
   });
+
+  $(".lst-state").hover(
+    function () {
+      $(this).css({
+        background: "#ddd",
+      });
+    },
+    function () {
+      $(this).css({
+        background: "none",
+      });
+    }
+  );
 
   $(".btn-edit").hover(
     function () {

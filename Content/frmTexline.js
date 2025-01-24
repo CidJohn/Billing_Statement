@@ -7,12 +7,13 @@ export const frmTexline = [
     text: [
       {
         label: "Billing No",
-        type: "number",
+        type: "text",
         idName: "noBilling",
         value: "",
         placeholder: "Number of Billing",
         classlist: "form-control",
         req: true,
+        disabled: true,
         handleLoginText: (e) => handleTextline(e),
       },
       {
@@ -101,6 +102,16 @@ export const frmTexline = [
   {
     div: "form-group-three",
     text: [
+      {
+        label: "Amount",
+        type: "number",
+        idName: "txtAmount",
+        value: "",
+        placeholder: "Enter Amount",
+        classlist: "form-control",
+        req: true,
+        handleLoginText: (e) => handleTextline(e),
+      },
       {
         label: "Time In",
         type: "time",

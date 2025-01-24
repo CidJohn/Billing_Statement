@@ -7,19 +7,20 @@ function TableStyle() {
   });
 
   $(".tbl-list table").css({
-    width: "100%",
+    width: "auto",
     "border-collapse": "collapse",
   });
 
   $(".tbl-list th, .tbl-list td").css({
     border: "1px solid #ddd",
-    padding: "8px",
+    padding: "5px",
     "text-align": "left",
   });
 
   $(".tbl-list th").css({
-    "background-color": "#4CAF50",
-    color: "white",
+    //"background-color": "#4CAF50",
+    //color: "white",
+    "font-family": "sans-serif",
   });
 
   $(".tbl-list tr:nth-child(even)").css({
@@ -29,13 +30,15 @@ function TableStyle() {
   $(".tbl-list tr:hover").css({
     "background-color": "#ddd",
   });
-  $(".class-sample").css({
+  $(".class-sample, .txtAmount").css({
     border: "none",
     background: "transparent",
-    width: "100px",
+    width: "70px",
     "text-align": "center",
+    "font-family": "sans-serif",
+    heigth: "10px",
   });
-  $(".class-sample").focus(
+  $(".class-sample, .txtAmount").focus(
     function () {
       $(this).css({
         border: "none",
@@ -47,7 +50,7 @@ function TableStyle() {
       });
     }
   );
-  $(".class-sample").hover(function () {
+  $(".class-sample, .txtAmount").hover(function () {
     $(this).css({
       border: "none",
       outline: "none",
