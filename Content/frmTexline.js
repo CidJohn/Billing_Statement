@@ -7,7 +7,7 @@ export const frmTexline = [
     text: [
       {
         label: "Billing No",
-        type: "number",
+        type: "text",
         idName: "noBilling",
         value: "",
         placeholder: "Number of Billing",

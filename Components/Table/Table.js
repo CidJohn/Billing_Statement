@@ -71,6 +71,10 @@ function Table(container, col, row, disCol = []) {
 
   TableScript();
   TableStyle();
+
+  const data = { totalAmount };
+
+  return;
 }
 
 export default Table;

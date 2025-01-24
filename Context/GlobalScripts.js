@@ -7,6 +7,7 @@ let loginInput = {};
 let formBilling = [];
 let chkRemember = false;
 let stateData = [];
+let hdDetails = [];
 
 export const handleLoginText = (e) => {
   const id = e.target.id;
@@ -50,19 +51,29 @@ export const handleTextline = (e) => {
 };
 
 export const handleFrmMngmt = (e) => {
-  // e.preventDefault();
   const dtFrom = $("#dtFrom").val();
   const dtTo = $("#dtTo").val();
-  formBilling = { ...formBilling, dtFrom, dtTo };
+  const noBilling = $("#noBilling").val();
+  formBilling = { ...formBilling, dtFrom, dtTo, noBilling };
   BillingStatement(formBilling, "billingStatement");
   window.location.hash = "/statements";
 };
 
 export const handleOnEdit = (item) => {
-  $("#mdlTitle").replaceWith(`<h2>${item.txtDriverName}</h2>`);
+  // $("#mdlTitle").replaceWith(`<h2>${item.txtDriverName}</h2>`);
   $(".modal-cont").css({
     display: "flex",
   });
+  hdDetails = {
+    noBilling: item.noBilling,
+    dtBilling: item.dtBilling,
+    dtFrom: item.dtFrom,
+    dtTo: item.dtTo,
+    txtPlate: item.txtPlate,
+    txtDriverName: item.txtDriverName,
+    txtAssignedRoute: item.txtAssignedRoute,
+  };
+
   let from = new Date(item.dtFrom);
   let to = new Date(item.dtTo);
   const daysDiff = Math.ceil((to - from) / (1000 * 60 * 60 * 24));
@@ -89,7 +100,21 @@ export const handleOnEdit = (item) => {
   }
 };
 export const stateRow = stateData;
+//export const details = hdDetails;
+
+export const handlePrint = () => {
+  console.log("print");
+  $("#btnClose").replaceWith("<div></div>");
+  $(".navbar-ui").replaceWith("<div></div>");
+  $("#btnCont").replaceWith("<div></div>");
+
+  window.print();
+};
 
 export const handleOnDelete = (item) => {
   console.log(item);
+};
+
+export const details = () => {
+  return hdDetails;
 };

@@ -13,7 +13,7 @@ function TableStyle() {
 
   $(".tbl-list th, .tbl-list td").css({
     border: "1px solid #ddd",
-    padding: "8px",
+    padding: "5px",
     "text-align": "left",
   });
 
@@ -36,6 +36,7 @@ function TableStyle() {
     width: "70px",
     "text-align": "center",
     "font-family": "sans-serif",
+    heigth: "10px",
   });
   $(".class-sample, .txtAmount").focus(
     function () {
