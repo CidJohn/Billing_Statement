@@ -10,6 +10,7 @@ function Modal(container) {
   const bodyContent = div2.div("", "body-modal-cont", "");
   const header = new DocCreate(headContent, "h2");
   header.div("mdlTitle", "mdl-title", "");
+  header.div("mdlTitleHd", "mdl-title-hd", "Statement of Account");
   header.div("btnClose", "btn-close", "x");
 
   const body = new DocCreate(bodyContent, "div");

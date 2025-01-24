@@ -15,6 +15,7 @@ function StatementStyle() {
     "margin-bottom": "10px",
     "text-align": "center",
   });
+
   setTimeout(() => {
     $(".btn-cont").css({
       padding: "10px",
@@ -48,6 +49,23 @@ function StatementStyle() {
         });
       }
     );
+    $(".info-cont").css({
+      display: "flex",
+      "justify-content": "space-between",
+      "font-family": "sans-serif",
+      "margin-top": "15px",
+    });
+    $(
+      ".billing-no, .billing-date, .billing-date, .billing-prd, .plate-no, .driver-name, .assign-route"
+    ).css({
+      display: "flex",
+      gap: "10px",
+    });
+    $(".info-cont p").css({
+      display: "flex",
+      "font-family": "sans-serif",
+      margin: "0px",
+    });
   }, 3000);
 }
 
