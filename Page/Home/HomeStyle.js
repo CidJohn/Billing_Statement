@@ -157,6 +157,51 @@ function HomeStyle() {
       });
     }
   );
+  $(window).resize(function () {
+    const windowWidth = $(window).width();
+
+    if (windowWidth <= 768) {
+      // Adjust for mobile devices
+      formCont.css({
+        "max-width": "90%",
+        padding: "15px",
+      });
+
+      form.css({
+        gap: "10px",
+        "flex-direction": "column",
+      });
+
+      $(".form-group-one, .form-group-two, .form-group-three").css({
+        width: "100%",
+      });
+
+      $(".btn-submit").css({
+        width: "100%",
+        "font-size": "16px",
+      });
+    } else {
+      // Revert to desktop styles
+      formCont.css({
+        "max-width": "80%",
+        padding: "20px",
+      });
+
+      form.css({
+        gap: "20px",
+        "flex-direction": "row",
+      });
+
+      $(".form-group-one, .form-group-two, .form-group-three").css({
+        width: "25%",
+      });
+
+      $(".btn-submit").css({
+        width: "150px",
+        "font-size": "20px",
+      });
+    }
+  });
 }
 
 export default HomeStyle;
