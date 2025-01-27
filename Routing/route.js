@@ -20,7 +20,7 @@ function route(main, status) {
     main.innerHTML = "";
     if (routes[path]) {
       routes[path]();
-      GlobalStyle(Object.keys(routes[path]));
+      GlobalStyle();
     } else {
       main.innerHTML = "<h2>404 - Page Not Found</h2>";
     }
