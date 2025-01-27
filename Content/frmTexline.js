@@ -114,17 +114,20 @@ export const frmTexline = [
       },
       {
         label: "Time In",
-        type: "time",
+        type: "text",
         idName: "txtTimeIn",
         value: "",
         classlist: "form-control",
+        placeholder: "Enter Time In (6:00/18:00)",
+
         req: true,
         handleLoginText: (e) => handleTextline(e),
       },
       {
         label: "Time Out",
-        type: "time",
+        type: "text",
         idName: "txtTimeOut",
+        placeholder: "Enter Time Out (6:00/18:00)",
         value: "",
         classlist: "form-control",
         req: true,
