@@ -40,7 +40,7 @@ function Table(container, col, row, disCol = []) {
         textline.textline(
           "text",
           `txt${header}`,
-          amountColumn ? "txtAmount" : "class-sample",
+          amountColumn ? ["txtAmount"] : ["class-field-text", "another-class"],
           "",
           false,
           dataRow[header] || "",

@@ -30,7 +30,7 @@ function TableStyle() {
   $(".tbl-list tr:hover").css({
     "background-color": "#ddd",
   });
-  $(".class-sample, .txtAmount").css({
+  $(".class-field-text, .txtAmount").css({
     border: "none",
     background: "transparent",
     width: "70px",
@@ -38,7 +38,7 @@ function TableStyle() {
     "font-family": "sans-serif",
     heigth: "10px",
   });
-  $(".class-sample, .txtAmount").focus(
+  $(".class-field-text, .txtAmount").focus(
     function () {
       $(this).css({
         border: "none",
@@ -50,7 +50,7 @@ function TableStyle() {
       });
     }
   );
-  $(".class-sample, .txtAmount").hover(function () {
+  $(".class-field-text, .txtAmount").hover(function () {
     $(this).css({
       border: "none",
       outline: "none",

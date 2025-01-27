@@ -103,10 +103,12 @@ export const stateRow = stateData;
 //export const details = hdDetails;
 
 export const handlePrint = () => {
-  console.log("print");
   $("#btnClose").replaceWith("<div></div>");
-  $(".navbar-ui").replaceWith("<div></div>");
-  $("#btnCont").replaceWith("<div></div>");
+  // $(".navbar-ui").replaceWith("<div></div>");
+  // $("#btnCont").replaceWith("<div></div>");
+  // $("#btnClose").hide();
+  $(".navbar-ui").hide();
+  $("#btnCont").hide();
 
   window.print();
 };
