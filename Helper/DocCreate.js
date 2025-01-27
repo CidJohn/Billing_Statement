@@ -29,7 +29,8 @@ class DocCreate {
       if (type) input.type = type;
       if (idName) input.id = idName;
       if (idName) input.name = idName;
-      if (classList) input.classList.add(classList);
+      if (classList.length > 0)
+        classList.forEach((item) => input.classList.add(item));
       if (req) input.required = req;
       if (value) input.value = value;
       if (placeholder) input.placeholder = placeholder;
