@@ -52,7 +52,7 @@ function Login(container) {
   txtRemember.textline(
     "checkbox",
     "chkRemember",
-    "chk-remember",
+    ["chk-remember"],
     "",
     false,
     "",

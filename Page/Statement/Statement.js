@@ -23,11 +23,6 @@ async function Statement(container) {
 
   const titleDiv = new DocCreate(state, "div");
   titleDiv.div("", "hd-title", "Billing Statement List");
-
-  // const { col, row } = sampleTable[0];
-  // const disCol = ["Date", "Incoming", "Outgoing"];
-  // Table(frmField, col, row, disCol);
-
   const row = await getBillingStatement("billingStatement");
 
   List(state, row, handleOnEdit, handleOnDelete);
@@ -103,6 +98,10 @@ async function Statement(container) {
       reload.div("", "", "Please Reload!");
     }
   }, 2000);
+
+  window.onafterprint = () => {
+    window.location.reload();
+  };
 }
 
 export default Statement;
