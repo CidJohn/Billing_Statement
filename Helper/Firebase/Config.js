@@ -1,5 +1,12 @@
 import { getDatabase } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+import {
+  initializeApp,
+  getApps,
+  getApp,
+} from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+
+let app;
 
 const firebaseConfig = {
   apiKey: "AIzaSyAWPFMCKsAl19lcYON1phFSaEwph47Hv84",
@@ -11,5 +18,13 @@ const firebaseConfig = {
   appId: "1:721475696122:web:7675a8fed8dff7b19ce043",
 };
 
-const app = initializeApp(firebaseConfig);
-export const database = getDatabase(app);
+if (!getApps().length) {
+  app = initializeApp(firebaseConfig);
+} else {
+  app = getApp();
+}
+
+const database = getDatabase(app);
+const authFire = getAuth(app);
+
+export { database, authFire };

@@ -4,6 +4,7 @@ import {
   handleFormLogin,
   handleRemember,
 } from "../../Context/GlobalScripts.js";
+import LoginScript from "./LoginScript.js";
 
 function Login(container) {
   const loginDiv = new DocCreate(container, "div");
@@ -59,6 +60,8 @@ function Login(container) {
     handleRemember
   );
   label2.div("lblRemember", "lbl-remember", "Remember Me");
+
+  LoginScript();
 }
 
 export default Login;

@@ -81,7 +81,7 @@ async function Statement(container) {
       assignRouteDiv.div("", "", "Assigned Route: ");
       assignRouteDiv.div("#assignRoute", "", txtAssignedRoute);
 
-      Table(body, col, stateRow, disCol);
+      const valueTable = Table(body, col, stateRow, disCol);
 
       const footer = new DocCreate(body, "div");
       footer.div("", "", "Prepared By:");
@@ -92,6 +92,7 @@ async function Statement(container) {
       const btnDiv = new DocCreate(body, "div");
       const contBtn = btnDiv.div("btnCont", "btn-cont", "");
       const btn = new DocCreate(contBtn, "button");
+      console.log(valueTable);
       btn.button("button", "btnPrint", "btn-print", "", "Print", handlePrint);
     } else {
       const reload = new DocCreate(body, "div");
