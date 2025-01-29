@@ -41,7 +41,7 @@ function ModalStyle() {
     width: "auto",
     display: "flex",
     "flex-direction": "column",
-    gap: "1rem",
+    gap: "1.5rem",
   });
 
   $(".btn-close").hover(

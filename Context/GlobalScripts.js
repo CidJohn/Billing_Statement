@@ -1,7 +1,9 @@
 import { frmTexline } from "../Content/frmTexline.js";
-import { defaultUsers, loginTextline } from "../Content/loginTextline.js";
+import { loginTextline } from "../Content/loginTextline.js";
+import { authFire } from "../Helper/Firebase/Config.js";
 import { BillingStatement } from "../Helper/Firebase/Firebase.js";
 import LocalStore from "../Helper/Storage/LocalStore.js";
+import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
 
 let loginInput = {};
 let formBilling = [];
@@ -17,22 +19,35 @@ export const handleLoginText = (e) => {
     if (item.idName === id) loginInput[id] = value;
   });
 };
+
 export const handleRemember = (e) => {
   const checked = e.target.checked;
   chkRemember = checked;
 };
 
-export const handleFormLogin = (e) => {
-  const userLogin = defaultUsers.find(
-    (item) => item.uname === loginInput.uname && item.pass === loginInput.pass
-  );
-  if (!userLogin) {
-    return alert("Wrong Username or Password!");
+export const handleFormLogin = async (e) => {
+  //e.preventDefault();
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      authFire,
+      loginInput.uname,
+      loginInput.pass
+    );
+    const user = userCredential.user;
+
+    console.log("Firebase login successful:", user);
+
+    const storage = new LocalStore("status", chkRemember);
+    storage.Create("active");
+
+    const userStorage = new LocalStore("userData", chkRemember);
+    userStorage.Create({ uname: user.email, uid: user.uid });
+
+    alert("Login successful!");
+    return;
+  } catch (firebaseError) {
+    console.error("Firebase login failed:", firebaseError.message);
   }
-  const storage = new LocalStore("status", chkRemember);
-  storage.Create("active");
-  const userStorage = new LocalStore("userData", chkRemember);
-  userStorage.Create(userLogin);
 };
 
 export const handleTextline = (e) => {

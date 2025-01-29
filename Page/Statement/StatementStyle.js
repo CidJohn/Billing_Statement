@@ -66,6 +66,16 @@ function StatementStyle() {
       "font-family": "sans-serif",
       margin: "0px",
     });
+    $(".header-info, .header-info2").css({
+      display: "flex",
+      "flex-direction": "column",
+      "font-family": "sans-serif",
+      margin: "0px",
+      gap: "10px",
+    });
+    $(".body-cont div").css({
+      "font-family": "sans-serif",
+    });
   }, 3000);
 }
 

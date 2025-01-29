@@ -33,10 +33,11 @@ function TableStyle() {
   $(".class-field-text, .txtAmount").css({
     border: "none",
     background: "transparent",
-    width: "70px",
+    width: "75px",
     "text-align": "center",
     "font-family": "sans-serif",
     heigth: "10px",
+    "font-size": "10px",
   });
   $(".class-field-text, .txtAmount").focus(
     function () {
@@ -55,6 +56,17 @@ function TableStyle() {
       border: "none",
       outline: "none",
     });
+  });
+  $(".total-amount").css({
+    "font-family": "sans-serif",
+    "font-size": "10px",
+    border: "none",
+    "text-align": "center",
+  });
+  $(".txt-total").css({
+    "font-size": "10px",
+    "font-family": "sans-serif",
+    "text-align": "center",
   });
 }
 
