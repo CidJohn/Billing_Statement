@@ -36,10 +36,11 @@ function TableStyle() {
     width: "75px",
     "text-align": "center",
     "font-family": "sans-serif",
-    heigth: "10px",
-    "font-size": "10px",
+    height: "20px",
+    "font-size": "12px",
+    color: "black",
   });
-  $(".class-field-text, .txtAmount").focus(
+  $(".class-field-text").focus(
     function () {
       $(this).css({
         border: "none",
@@ -51,7 +52,7 @@ function TableStyle() {
       });
     }
   );
-  $(".class-field-text, .txtAmount").hover(function () {
+  $(".class-field-text").hover(function () {
     $(this).css({
       border: "none",
       outline: "none",
@@ -59,12 +60,12 @@ function TableStyle() {
   });
   $(".total-amount").css({
     "font-family": "sans-serif",
-    "font-size": "10px",
+    "font-size": "12px",
     border: "none",
     "text-align": "center",
   });
   $(".txt-total").css({
-    "font-size": "10px",
+    "font-size": "12px",
     "font-family": "sans-serif",
     "text-align": "center",
   });
