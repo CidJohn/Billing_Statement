@@ -44,7 +44,7 @@ function Table(container, col, row, disCol = []) {
           "text",
           `txt${header}`,
           amountColumn
-            ? ["txtAmount"]
+            ? ["txtAmount", "class-field-text"]
             : [
                 "class-field-text",
                 "another-class",
@@ -52,7 +52,9 @@ function Table(container, col, row, disCol = []) {
               ],
           "",
           false,
-          dataRow[header] || "",
+          dataRow[header]
+            ? dataRow[header]
+            : dataRow[header.replace(/\s+/g, "_").replace(".", "")] || "",
           null,
           isDisabled
         );
