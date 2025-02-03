@@ -30,6 +30,7 @@ async function Statement(container) {
 
   List(state, row, handleEditWithTimer, handleOnDelete);
   const body = Modal(state);
+  body.innerHTML = "";
   const { col, disCol } = sampleTable;
   function handleEditWithTimer(...args) {
     handleOnEdit(...args);
@@ -51,7 +52,6 @@ async function Statement(container) {
           dtFrom,
           dtTo
         );
-        body.innerHTML = "";
         const detailsDiv = new DocCreate(body, "div");
         const infoDiv = detailsDiv.div("", "info-cont", "");
         const twrDiv = new DocCreate(infoDiv, "div");

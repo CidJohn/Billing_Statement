@@ -4,7 +4,9 @@ import { sampleTable } from "../Content/sampleTable.js";
 import { authFire } from "../Helper/Firebase/Config.js";
 import {
   BillingStatement,
+  deleteBillingStatement,
   getBillingStatement,
+  updateBillingStatement,
 } from "../Helper/Firebase/Firebase.js";
 import LocalStore from "../Helper/Storage/LocalStore.js";
 import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
@@ -96,16 +98,17 @@ export const handleOnEdit = async (item) => {
     "_"
   )}`;
   const keyValue =
-    tableValue.find((item) => Object.keys(item)[0] === filterName) || [];
-
+    tableValue.find((item) => Object.keys(item)[1] === filterName) || [];
   const tableData = keyValue[filterName] ? keyValue[filterName] : [];
+
   if (tableData.length > 0) {
     stateData = tableData;
     setTimeout(() => {
       const btnSave = document.getElementById("btnSave");
       if (btnSave) {
         btnSave.innerText = "Update";
-        btnSave.style.display = "none";
+        btnSave.dataset.data = keyValue.id;
+        //  btnSave.style.display = "none";
       }
     }, 1000);
   } else {
@@ -146,8 +149,19 @@ export const handlePrint = () => {
   window.print();
 };
 
-export const handleOnDelete = (item) => {
-  console.log(item);
+export const handleOnDelete = async (item) => {
+  const tableValue = await getBillingStatement("tableValue");
+  const filterName = `${item.dtBilling}_${item.txtDriverName.replace(
+    " ",
+    "_"
+  )}`;
+  const keyValue =
+    tableValue.find((item) => Object.keys(item)[1] === filterName) || [];
+  const tableData = keyValue[filterName] ? keyValue[filterName] : [];
+  if (tableData.length > 0) {
+    deleteBillingStatement(keyValue.id, "tableValue");
+  }
+  deleteBillingStatement(item.id, "billingStatement");
 };
 
 export const details = () => {
@@ -155,25 +169,45 @@ export const details = () => {
 };
 
 export const handleSave = (id) => {
+  const update = document.getElementById("btnSave");
   const { col } = sampleTable;
   const tableId = id.replace(/\s+/g, "_");
   const toSaveTable = [];
-  $("tr").each(function (rowIndex) {
-    let rowData = {};
+  if (update.innerText === "Update") {
+    const id = update.dataset.data;
+    $("tr").each(function (rowIndex) {
+      let rowData = {};
 
-    $(this)
-      .find(".class-field-text")
-      .each(function (colIndex) {
-        const header = col[colIndex].replace(/\s+/g, "_").replace(".", "");
-        const value = $(this).val() || "";
-        rowData[header] = value;
-      });
+      $(this)
+        .find(".class-field-text")
+        .each(function (colIndex) {
+          const header = col[colIndex].replace(/\s+/g, "_").replace(".", "");
+          const value = $(this).val() || "";
+          rowData[header] = value;
+        });
 
-    if (Object.keys(rowData).length > 0) {
-      handleTableValue.push(rowData);
-    }
-  });
-  toSaveTable[tableId] = handleTableValue;
-  BillingStatement(toSaveTable, "tableValue");
-  // console.log(toSaveTable);
+      if (Object.keys(rowData).length > 0) {
+        handleTableValue.push(rowData);
+      }
+    });
+    updateBillingStatement(id, "tableValue", { [tableId]: handleTableValue });
+  } else {
+    $("tr").each(function (rowIndex) {
+      let rowData = {};
+
+      $(this)
+        .find(".class-field-text")
+        .each(function (colIndex) {
+          const header = col[colIndex].replace(/\s+/g, "_").replace(".", "");
+          const value = $(this).val() || "";
+          rowData[header] = value;
+        });
+
+      if (Object.keys(rowData).length > 0) {
+        handleTableValue.push(rowData);
+      }
+    });
+    toSaveTable[tableId] = handleTableValue;
+    BillingStatement(toSaveTable, "tableValue");
+  }
 };

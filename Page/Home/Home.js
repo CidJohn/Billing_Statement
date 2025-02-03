@@ -6,8 +6,12 @@ import HomeScript from "./HomeScript.js";
 
 function Home(container) {
   const userStorage = new Local("userData");
-  const credetial = userStorage.Read();
-  const username = credetial.map((item) => item.uname);
+  const userStorage2 = new Local("userData", true);
+  const credetial = userStorage.Read() || [];
+  const cred2 = userStorage2.Read() || [];
+  const mapCred = credetial.length > 0 ? credetial : cred2;
+  const username = mapCred.map((item) => item.uname);
+
   const url = new URL(window.location.href);
   url.search = "";
   window.history.replaceState({}, document.title, url.toString());
@@ -42,17 +46,36 @@ function Home(container) {
 
     if (item.text) {
       item.text.map((txtItem) => {
-        lblFormOne.div("", "frms-label", `${txtItem.label}:`);
-        txtFormOne.textline(
-          txtItem.type,
-          txtItem.idName,
-          txtItem.classlist,
-          txtItem.placeholder,
-          txtItem.req,
-          txtItem.value,
-          txtItem.handleLoginText,
-          txtItem.disabled
-        );
+        if (txtItem.div) {
+          const checkDiv = new DocCreate(frmGroupOne, "div");
+          const divCheck = checkDiv.div("", txtItem.div, "");
+          const txtFormOneCheck = new DocCreate(divCheck, "input");
+          const lblFormOneCheck = new DocCreate(divCheck, "div");
+          lblFormOneCheck.div("", "frms-label", `${txtItem.label}:`);
+          txtFormOneCheck.textline(
+            txtItem.type,
+            txtItem.idName,
+            txtItem.classlist,
+            txtItem.placeholder,
+            txtItem.req,
+            txtItem.value,
+            txtItem.handleLoginText,
+            txtItem.disabled
+          );
+        } else {
+          lblFormOne.div("", "frms-label", `${txtItem.label}:`);
+          txtFormOne.textline(
+            txtItem.type,
+            txtItem.idName,
+            txtItem.classlist,
+            txtItem.placeholder,
+            txtItem.req,
+            txtItem.value,
+            txtItem.handleLoginText,
+            txtItem.disabled
+          );
+        }
+
         if (txtItem.dateInput) {
           const date = FormOne2.div("", "frms-fromto", ``);
           const txtFormOne2 = new DocCreate(date, "input");
