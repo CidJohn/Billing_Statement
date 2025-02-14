@@ -70,11 +70,11 @@ function StateTableStyle() {
     "flex-direction": "column",
     "font-family": "sans-serif",
     margin: "0px",
-    "font-size": "12px",
+    "font-size": "14px",
   });
   $(".body-cont div").css({
     "font-family": "sans-serif",
-    "font-size": "12px",
+    "font-size": "14px",
   });
   $(".p-item").css({
     "border-bottom": "1px solid",

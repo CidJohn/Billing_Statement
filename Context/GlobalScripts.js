@@ -70,10 +70,12 @@ export const handleTextline = (e) => {
 };
 
 export const handleFrmMngmt = (e) => {
+  e.preventDefault();
   const dtFrom = $("#dtFrom").val();
   const dtTo = $("#dtTo").val();
   const noBilling = $("#noBilling").val();
-  formBilling = { ...formBilling, dtFrom, dtTo, noBilling };
+  const chkSunday = $("#chkSunday").prop("checked");
+  formBilling = { ...formBilling, dtFrom, dtTo, noBilling, chkSunday };
   BillingStatement(formBilling, "billingStatement");
   window.location.hash = "/statements";
 };
@@ -119,8 +121,19 @@ export const handleOnEdit = async (item) => {
     for (let i = 0; i <= daysDiff; i++) {
       const currentDate = new Date(from);
       currentDate.setDate(from.getDate() + i);
-
-      if (currentDate.getDay() !== 0) {
+      if (item.chkSunday) {
+        const date = currentDate.toISOString().split("T")[0];
+        const Data = {
+          Date: date,
+          Incoming: item.txtAssignedRoute,
+          "Time In": item.txtTimeIn,
+          Outgoing: item.txtAssignedRoute,
+          "Time out": item.txtTimeOut,
+          "No. of trip": item.txtTrip,
+          Amount: item.txtAmount,
+        };
+        stateData.push(Data);
+      } else if (currentDate.getDay() !== 0) {
         const date = currentDate.toISOString().split("T")[0];
         const Data = {
           Date: date,

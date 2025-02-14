@@ -51,19 +51,33 @@ function Home(container) {
           const divCheck = checkDiv.div("", txtItem.div, "");
           const txtFormOneCheck = new DocCreate(divCheck, "input");
           const lblFormOneCheck = new DocCreate(divCheck, "div");
-          lblFormOneCheck.div("", "frms-label", `${txtItem.label}:`);
-          txtFormOneCheck.textline(
-            txtItem.type,
-            txtItem.idName,
-            txtItem.classlist,
-            txtItem.placeholder,
-            txtItem.req,
-            txtItem.value,
-            txtItem.handleLoginText,
-            txtItem.disabled
-          );
+          if (txtItem.idName === "chkSunday") {
+            txtFormOneCheck.textline(
+              txtItem.type,
+              txtItem.idName,
+              txtItem.classlist,
+              txtItem.placeholder,
+              txtItem.req,
+              txtItem.value,
+              txtItem.handleLoginText,
+              txtItem.disabled
+            );
+            lblFormOneCheck.div("", "frms-label", `${txtItem.label}`);
+          } else {
+            lblFormOneCheck.div("", "frms-label", `${txtItem.label}`);
+            txtFormOneCheck.textline(
+              txtItem.type,
+              txtItem.idName,
+              txtItem.classlist,
+              txtItem.placeholder,
+              txtItem.req,
+              txtItem.value,
+              txtItem.handleLoginText,
+              txtItem.disabled
+            );
+          }
         } else {
-          lblFormOne.div("", "frms-label", `${txtItem.label}:`);
+          lblFormOne.div("", "frms-label", `${txtItem.label}`);
           txtFormOne.textline(
             txtItem.type,
             txtItem.idName,
@@ -82,7 +96,7 @@ function Home(container) {
           const lblFormOne2 = new DocCreate(date, "div");
 
           txtItem.dateInput.map((dateItem) => {
-            lblFormOne2.div("", "frms-label", `${dateItem.subLabel}:`);
+            lblFormOne2.div("", "frms-label", `${dateItem.subLabel}`);
             txtFormOne2.textline(
               dateItem.type,
               dateItem.idName,
