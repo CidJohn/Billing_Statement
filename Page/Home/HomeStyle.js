@@ -202,6 +202,18 @@ function HomeStyle() {
       });
     }
   });
+
+  $(".check-Sun-Box").css({
+    border: "none",
+    display: "flex",
+    "align-items": "center",
+    gap: "3px",
+  });
+  $("#chkSunday ").css({
+    border: "none",
+    padding: "0",
+    "font-size": " 0px",
+  });
 }
 
 export default HomeStyle;

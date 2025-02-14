@@ -12,8 +12,8 @@ function TableStyle() {
   });
 
   $(".tbl-list th, .tbl-list td").css({
-    border: "1px solid #ddd",
-    padding: "5px",
+    border: "1px solid black",
+
     "text-align": "left",
   });
 
@@ -21,6 +21,9 @@ function TableStyle() {
     //"background-color": "#4CAF50",
     //color: "white",
     "font-family": "sans-serif",
+    padding: "5px",
+    "font-size": "14px",
+    "text-align": "center",
   });
 
   $(".tbl-list tr:nth-child(even)").css({
@@ -33,12 +36,14 @@ function TableStyle() {
   $(".class-field-text, .txtAmount").css({
     border: "none",
     background: "transparent",
-    width: "70px",
+    width: "75px",
     "text-align": "center",
     "font-family": "sans-serif",
-    heigth: "10px",
+    height: "20px",
+    "font-size": "14px",
+    color: "black",
   });
-  $(".class-field-text, .txtAmount").focus(
+  $(".class-field-text").focus(
     function () {
       $(this).css({
         border: "none",
@@ -50,11 +55,21 @@ function TableStyle() {
       });
     }
   );
-  $(".class-field-text, .txtAmount").hover(function () {
+  $(".class-field-text").hover(function () {
     $(this).css({
       border: "none",
       outline: "none",
     });
+  });
+  $(".total-amount").css({
+    "font-family": "sans-serif",
+    "font-size": "14px",
+    "text-align": "center",
+  });
+  $(".txt-total").css({
+    "font-size": "14px",
+    "font-family": "sans-serif",
+    "text-align": "center",
   });
 }
 

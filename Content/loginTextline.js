@@ -3,10 +3,10 @@ import { handleLoginText } from "../Context/GlobalScripts.js";
 export const loginTextline = [
   {
     label: "Username",
-    type: "text",
+    type: "email",
     idName: "uname",
     value: "",
-    placeholder: "Enter Username",
+    placeholder: "Enter Your Email",
     classlist: ["form-control"],
     req: true,
     handleLoginText: (e) => handleLoginText(e),
@@ -16,7 +16,7 @@ export const loginTextline = [
     type: "password",
     idName: "pass",
     value: "",
-    placeholder: "Enter Password",
+    placeholder: "Enter Your Password",
     classlist: ["form-control"],
     req: true,
     handleLoginText: (e) => handleLoginText(e),
@@ -25,7 +25,7 @@ export const loginTextline = [
 
 export const defaultUsers = [
   {
-    uname: "Cidjohn",
-    pass: "Villanueva",
+    uname: "cidjohn31@gmail.com",
+    pass: "C1dj0hn31.",
   },
 ];

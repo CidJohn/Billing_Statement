@@ -1,6 +1,7 @@
 import DocCreate from "../../Helper/DocCreate.js";
 import TableScript from "./TableScript.js";
 import TableStyle from "./TableStyle.js";
+let groupedData = [];
 
 function Table(container, col, row, disCol = []) {
   const div = new DocCreate(container, "div");
@@ -29,6 +30,8 @@ function Table(container, col, row, disCol = []) {
     row.forEach((dataRow) => {
       const tblRow = new DocCreate(tbody, "tr");
       const tbodyrow = tblRow.div("", "", "");
+      const rowData = {};
+
       col.forEach((header, colIndex) => {
         const td = new DocCreate(tbodyrow, "td");
 
@@ -40,21 +43,33 @@ function Table(container, col, row, disCol = []) {
         textline.textline(
           "text",
           `txt${header}`,
-          amountColumn ? ["txtAmount"] : ["class-field-text", "another-class"],
+          amountColumn
+            ? ["txtAmount", "class-field-text"]
+            : [
+                "class-field-text",
+                "another-class",
+                header.replace(/\s+/g, "-"),
+              ],
           "",
           false,
-          dataRow[header] || "",
+          dataRow[header]
+            ? dataRow[header]
+            : dataRow[header.replace(/\s+/g, "_").replace(".", "")] || "",
           null,
           isDisabled
         );
+        rowData[header] = dataRow[header] || "";
       });
       const txtAmount = $("#txtAmount").val();
       if (txtAmount !== undefined && !isNaN(txtAmount)) {
         totalAmount += parseFloat(txtAmount);
       }
+
+      groupedData.push(rowData);
     });
+
     const totalRow = new DocCreate(tbody, "tr");
-    const totalRowDiv = totalRow.div("", "", "");
+    const totalRowDiv = totalRow.div("", "tot-row", "");
 
     col.forEach((header) => {
       const td = new DocCreate(totalRowDiv, "td");
@@ -74,7 +89,7 @@ function Table(container, col, row, disCol = []) {
 
   const data = { totalAmount };
 
-  return;
+  return groupedData;
 }
 
 export default Table;

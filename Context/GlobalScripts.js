@@ -1,14 +1,21 @@
 import { frmTexline } from "../Content/frmTexline.js";
-import { defaultUsers, loginTextline } from "../Content/loginTextline.js";
-import { BillingStatement } from "../Helper/Firebase/Firebase.js";
+import { loginTextline } from "../Content/loginTextline.js";
+import { sampleTable } from "../Content/sampleTable.js";
+import { authFire } from "../Helper/Firebase/Config.js";
+import {
+  BillingStatement,
+  deleteBillingStatement,
+  getBillingStatement,
+  updateBillingStatement,
+} from "../Helper/Firebase/Firebase.js";
 import LocalStore from "../Helper/Storage/LocalStore.js";
+import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
 
 let loginInput = {};
 let formBilling = [];
 let chkRemember = false;
-let stateData = [];
 let hdDetails = [];
-
+let handleTableValue = [];
 export const handleLoginText = (e) => {
   const id = e.target.id;
   const value = e.target.value;
@@ -17,22 +24,34 @@ export const handleLoginText = (e) => {
     if (item.idName === id) loginInput[id] = value;
   });
 };
+
 export const handleRemember = (e) => {
   const checked = e.target.checked;
   chkRemember = checked;
 };
 
-export const handleFormLogin = (e) => {
-  const userLogin = defaultUsers.find(
-    (item) => item.uname === loginInput.uname && item.pass === loginInput.pass
-  );
-  if (!userLogin) {
-    return alert("Wrong Username or Password!");
+export const handleFormLogin = async (e) => {
+  e.preventDefault();
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      authFire,
+      loginInput.uname,
+      loginInput.pass
+    );
+    const user = userCredential.user;
+
+    const storage = new LocalStore("status", chkRemember);
+    storage.Create("active");
+
+    const userStorage = new LocalStore("userData", chkRemember);
+    userStorage.Create({ uname: user.email, uid: user.uid });
+
+    alert("Login successful!");
+    window.location.reload();
+    return;
+  } catch (firebaseError) {
+    console.error("Firebase login failed:", firebaseError.message);
   }
-  const storage = new LocalStore("status", chkRemember);
-  storage.Create("active");
-  const userStorage = new LocalStore("userData", chkRemember);
-  userStorage.Create(userLogin);
 };
 
 export const handleTextline = (e) => {
@@ -51,16 +70,18 @@ export const handleTextline = (e) => {
 };
 
 export const handleFrmMngmt = (e) => {
+  e.preventDefault();
   const dtFrom = $("#dtFrom").val();
   const dtTo = $("#dtTo").val();
   const noBilling = $("#noBilling").val();
-  formBilling = { ...formBilling, dtFrom, dtTo, noBilling };
+  const chkSunday = $("#chkSunday").prop("checked");
+  formBilling = { ...formBilling, dtFrom, dtTo, noBilling, chkSunday };
   BillingStatement(formBilling, "billingStatement");
   window.location.hash = "/statements";
 };
+let stateData = [];
 
-export const handleOnEdit = (item) => {
-  // $("#mdlTitle").replaceWith(`<h2>${item.txtDriverName}</h2>`);
+export const handleOnEdit = async (item) => {
   $(".modal-cont").css({
     display: "flex",
   });
@@ -73,50 +94,133 @@ export const handleOnEdit = (item) => {
     txtDriverName: item.txtDriverName,
     txtAssignedRoute: item.txtAssignedRoute,
   };
+  const tableValue = await getBillingStatement("tableValue");
+  const filterName = `${item.dtBilling}_${item.txtDriverName.replace(
+    " ",
+    "_"
+  )}`;
+  const keyValue =
+    tableValue.find((item) => Object.keys(item)[1] === filterName) || [];
+  const tableData = keyValue[filterName] ? keyValue[filterName] : [];
 
-  let from = new Date(item.dtFrom);
-  let to = new Date(item.dtTo);
-  const daysDiff = Math.ceil((to - from) / (1000 * 60 * 60 * 24));
+  if (tableData.length > 0) {
+    stateData = tableData;
+    setTimeout(() => {
+      const btnSave = document.getElementById("btnSave");
+      if (btnSave) {
+        btnSave.innerText = "Update";
+        btnSave.dataset.data = keyValue.id;
+        //  btnSave.style.display = "none";
+      }
+    }, 1000);
+  } else {
+    let from = new Date(item.dtFrom);
+    let to = new Date(item.dtTo);
+    const daysDiff = Math.ceil((to - from) / (1000 * 60 * 60 * 24));
 
-  for (let i = 0; i <= daysDiff; i++) {
-    const currentDate = new Date(from);
-    currentDate.setDate(from.getDate() + i);
-
-    if (currentDate.getDay() !== 0) {
-      //console.log(currentDate.toISOString().split("T")[0]);
-      //console.log(currentDate.getDay());
-      const date = currentDate.toISOString().split("T")[0];
-      const Data = {
-        Date: date,
-        Incoming: item.txtAssignedRoute,
-        "Time In": item.txtTimeIn,
-        Outgoing: item.txtAssignedRoute,
-        "Time out": item.txtTimeOut,
-        "No. of trip": item.txtTrip,
-        Amount: item.txtAmount,
-      };
-      stateData.push(Data);
+    for (let i = 0; i <= daysDiff; i++) {
+      const currentDate = new Date(from);
+      currentDate.setDate(from.getDate() + i);
+      if (item.chkSunday) {
+        const date = currentDate.toISOString().split("T")[0];
+        const Data = {
+          Date: date,
+          Incoming: item.txtAssignedRoute,
+          "Time In": item.txtTimeIn,
+          Outgoing: item.txtAssignedRoute,
+          "Time out": item.txtTimeOut,
+          "No. of trip": item.txtTrip,
+          Amount: item.txtAmount,
+        };
+        stateData.push(Data);
+      } else if (currentDate.getDay() !== 0) {
+        const date = currentDate.toISOString().split("T")[0];
+        const Data = {
+          Date: date,
+          Incoming: item.txtAssignedRoute,
+          "Time In": item.txtTimeIn,
+          Outgoing: item.txtAssignedRoute,
+          "Time out": item.txtTimeOut,
+          "No. of trip": item.txtTrip,
+          Amount: item.txtAmount,
+        };
+        stateData.push(Data);
+      }
     }
   }
 };
-export const stateRow = stateData;
-//export const details = hdDetails;
+
+export const stateRow = () => {
+  return stateData;
+};
 
 export const handlePrint = () => {
   $("#btnClose").replaceWith("<div></div>");
-  // $(".navbar-ui").replaceWith("<div></div>");
-  // $("#btnCont").replaceWith("<div></div>");
-  // $("#btnClose").hide();
   $(".navbar-ui").hide();
   $("#btnCont").hide();
 
   window.print();
 };
 
-export const handleOnDelete = (item) => {
-  console.log(item);
+export const handleOnDelete = async (item) => {
+  const tableValue = await getBillingStatement("tableValue");
+  const filterName = `${item.dtBilling}_${item.txtDriverName.replace(
+    " ",
+    "_"
+  )}`;
+  const keyValue =
+    tableValue.find((item) => Object.keys(item)[1] === filterName) || [];
+  const tableData = keyValue[filterName] ? keyValue[filterName] : [];
+  if (tableData.length > 0) {
+    deleteBillingStatement(keyValue.id, "tableValue");
+  }
+  deleteBillingStatement(item.id, "billingStatement");
 };
 
 export const details = () => {
   return hdDetails;
+};
+
+export const handleSave = (id) => {
+  const update = document.getElementById("btnSave");
+  const { col } = sampleTable;
+  const tableId = id.replace(/\s+/g, "_");
+  const toSaveTable = [];
+  if (update.innerText === "Update") {
+    const id = update.dataset.data;
+    $("tr").each(function (rowIndex) {
+      let rowData = {};
+
+      $(this)
+        .find(".class-field-text")
+        .each(function (colIndex) {
+          const header = col[colIndex].replace(/\s+/g, "_").replace(".", "");
+          const value = $(this).val() || "";
+          rowData[header] = value;
+        });
+
+      if (Object.keys(rowData).length > 0) {
+        handleTableValue.push(rowData);
+      }
+    });
+    updateBillingStatement(id, "tableValue", { [tableId]: handleTableValue });
+  } else {
+    $("tr").each(function (rowIndex) {
+      let rowData = {};
+
+      $(this)
+        .find(".class-field-text")
+        .each(function (colIndex) {
+          const header = col[colIndex].replace(/\s+/g, "_").replace(".", "");
+          const value = $(this).val() || "";
+          rowData[header] = value;
+        });
+
+      if (Object.keys(rowData).length > 0) {
+        handleTableValue.push(rowData);
+      }
+    });
+    toSaveTable[tableId] = handleTableValue;
+    BillingStatement(toSaveTable, "tableValue");
+  }
 };

@@ -133,6 +133,17 @@ export const frmTexline = [
         req: true,
         handleLoginText: (e) => handleTextline(e),
       },
+      {
+        div: "check-Sun-Box",
+        label: "Include Sunday",
+        type: "checkbox",
+        idName: "chkSunday",
+        placeholder: "Enter Time Out (6:00/18:00)",
+        value: "",
+        classlist: ["form-control-check"],
+        req: false,
+        handleLoginText: (e) => handleTextline(e),
+      },
     ],
   },
   {
@@ -146,5 +157,6 @@ export const frmTexline = [
         textContent: "Add",
       },
     ],
+    
   },
 ];

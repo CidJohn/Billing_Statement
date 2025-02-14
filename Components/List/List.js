@@ -1,6 +1,6 @@
 import DocCreate from "../../Helper/DocCreate.js";
 import ListStyle from "./ListStyle.js";
-
+let toReturnVal = [];
 function List(container, items, handleOnEdit, handleOnDelete) {
   const div = new DocCreate(container, "div");
   const listDiv = div.div("listCont", "list-cont", "");
@@ -35,6 +35,8 @@ function List(container, items, handleOnEdit, handleOnDelete) {
   }
 
   ListStyle();
+
+  return toReturnVal;
 }
 
 export default List;

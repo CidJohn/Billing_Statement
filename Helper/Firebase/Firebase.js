@@ -13,20 +13,14 @@ export const BillingStatement = (data, dbName) => {
   const newStmtRef = push(stmtRef);
 
   set(newStmtRef, data)
-    .then(() => alert("Billing Statement Added Successfully!"))
+    .then(() => {
+      alert("Billing Statement Added Successfully!");
+      window.location.reload();
+    })
     .catch((err) => console.error("Error Saving:", err));
 };
 
 export const getBillingStatement = (dbName) => {
-  // const stmtRef = ref(database, dbName);
-
-  // onValue(stmtRef, (snapshot) => {
-  //   const data = snapshot.val();
-  //   for (const [key, value] of Object.entries(data)) {
-  //     getStorage.push(value);
-  //   }
-  // });
-  // return getStorage
   return new Promise((resolve, reject) => {
     const stmtRef = ref(database, dbName);
     onValue(
@@ -34,10 +28,10 @@ export const getBillingStatement = (dbName) => {
       (response) => {
         const res = response.val();
         if (res) {
-          const getStorage = [];
-          for (const [key, value] of Object.entries(res)) {
-            getStorage.push(value);
-          }
+          const getStorage = Object.entries(res).map(([key, value]) => ({
+            id: key,
+            ...value,
+          }));
           resolve(getStorage);
         } else {
           resolve([]);
@@ -52,15 +46,20 @@ export const getBillingStatement = (dbName) => {
 
 export function updateBillingStatement(id, dbName, updatedStatement) {
   const statementRef = ref(database, `${dbName}/${id}`);
-
   update(statementRef, updatedStatement)
-    .then(() => alert("Billing statement updated successfully!"))
+    .then(() => {
+      alert("Billing statement updated successfully!");
+      window.location.reload();
+    })
     .catch((error) => console.error("Error updating statement:", error));
 }
 
 export function deleteBillingStatement(id, dbName) {
   const statementRef = ref(database, `${dbName}/${id}`);
   remove(statementRef)
-    .then(() => alert("Billing statement deleted successfully!"))
+    .then(() => {
+      alert("Billing statement deleted successfully!");
+      window.location.reload();
+    })
     .catch((error) => console.error("Error deleting statement:", error));
 }
