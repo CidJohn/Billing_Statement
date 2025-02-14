@@ -206,9 +206,10 @@ function HomeStyle() {
   $(".check-Sun-Box").css({
     border: "none",
     display: "flex",
-    "flex-direction": "row-reverse",
+    "align-items": "center",
+    gap: "3px",
   });
-  $("#chkSunday  ").css({
+  $("#chkSunday ").css({
     border: "none",
     padding: "0",
     "font-size": " 0px",
