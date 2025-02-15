@@ -27,7 +27,7 @@ function Table(container, col, row, disCol = []) {
   const tbody = tblBody.div("", "", "");
 
   if (row) {
-    row.forEach((dataRow) => {
+    row.forEach((dataRow, indexrow) => {
       const tblRow = new DocCreate(tbody, "tr");
       const tbodyrow = tblRow.div("", "", "");
       const rowData = {};
@@ -60,11 +60,10 @@ function Table(container, col, row, disCol = []) {
         );
         rowData[header] = dataRow[header] || "";
       });
-      const txtAmount = $("#txtAmount").val();
-      if (txtAmount !== undefined && !isNaN(txtAmount)) {
+      const txtAmount = dataRow["Amount"];
+      if (txtAmount !== undefined && !isNaN(txtAmount) && txtAmount !== 0) {
         totalAmount += parseFloat(txtAmount);
       }
-
       groupedData.push(rowData);
     });
 
@@ -73,7 +72,6 @@ function Table(container, col, row, disCol = []) {
 
     col.forEach((header) => {
       const td = new DocCreate(totalRowDiv, "td");
-
       if (header === "No. of trip") {
         td.div("", "txt-total", `Total: `);
       } else if (header === "Amount") {
