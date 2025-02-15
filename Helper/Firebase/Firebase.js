@@ -15,7 +15,6 @@ export const BillingStatement = (data, dbName) => {
   set(newStmtRef, data)
     .then(() => {
       alert("Billing Statement Added Successfully!");
-      window.location.reload();
     })
     .catch((err) => console.error("Error Saving:", err));
 };
@@ -49,7 +48,6 @@ export function updateBillingStatement(id, dbName, updatedStatement) {
   update(statementRef, updatedStatement)
     .then(() => {
       alert("Billing statement updated successfully!");
-      window.location.reload();
     })
     .catch((error) => console.error("Error updating statement:", error));
 }

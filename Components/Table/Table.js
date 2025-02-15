@@ -73,7 +73,6 @@ function Table(container, col, row, disCol = []) {
 
     col.forEach((header) => {
       const td = new DocCreate(totalRowDiv, "td");
-
       if (header === "No. of trip") {
         td.div("", "txt-total", `Total: `);
       } else if (header === "Amount") {
