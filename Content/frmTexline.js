@@ -1,5 +1,5 @@
 import { handleTextline } from "../Context/GlobalScripts.js";
-import CurrentDate from "../Helper/CurrentDate.js";
+import CurrentDate, { FromDate, ToDate } from "../Helper/CurrentDate.js";
 
 export const frmTexline = [
   {
@@ -33,7 +33,7 @@ export const frmTexline = [
             subLabel: "From",
             type: "date",
             idName: "dtFrom",
-            value: "",
+            value: FromDate(CurrentDate()),
             placeholder: "mm/dd/yyyy",
             classlist: ["form-control"],
             req: true,
@@ -43,7 +43,7 @@ export const frmTexline = [
             subLabel: "To",
             type: "date",
             idName: "dtTo",
-            value: "",
+            value: ToDate(CurrentDate()),
             placeholder: "mm/dd/yyyy",
             classlist: ["form-control"],
             req: true,
@@ -157,6 +157,5 @@ export const frmTexline = [
         textContent: "Add",
       },
     ],
-    
   },
 ];

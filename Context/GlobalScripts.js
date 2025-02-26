@@ -105,14 +105,14 @@ export const handleOnEdit = async (item) => {
 
   if (tableData.length > 0) {
     stateData = tableData;
-    setTimeout(() => {
+    setInterval(() => {
       const btnSave = document.getElementById("btnSave");
       if (btnSave) {
         btnSave.innerText = "Update";
         btnSave.dataset.data = keyValue.id;
         //  btnSave.style.display = "none";
       }
-    }, 1000);
+    }, 100);
   } else {
     let from = new Date(item.dtFrom);
     let to = new Date(item.dtTo);
@@ -175,6 +175,8 @@ export const handleOnDelete = async (item) => {
     deleteBillingStatement(keyValue.id, "tableValue");
   }
   deleteBillingStatement(item.id, "billingStatement");
+  alert("Billing statement deleted successfully!");
+  window.location.reload();
 };
 
 export const details = () => {
@@ -222,5 +224,6 @@ export const handleSave = (id) => {
     });
     toSaveTable[tableId] = handleTableValue;
     BillingStatement(toSaveTable, "tableValue");
+    update.textContent = "Update";
   }
 };
