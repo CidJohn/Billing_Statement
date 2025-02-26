@@ -55,9 +55,6 @@ export function updateBillingStatement(id, dbName, updatedStatement) {
 export function deleteBillingStatement(id, dbName) {
   const statementRef = ref(database, `${dbName}/${id}`);
   remove(statementRef)
-    .then(() => {
-      alert("Billing statement deleted successfully!");
-      window.location.reload();
-    })
+    .then(() => {})
     .catch((error) => console.error("Error deleting statement:", error));
 }
