@@ -88,7 +88,6 @@ async function Statement(container) {
         assignRouteDiv.div("", "", "Assigned Route: ");
         assignRouteDiv.div("#assignRoute", "p-item", txtAssignedRoute);
         Table(body, col, dataRow, disCol);
-
         const footer = new DocCreate(body, "div");
         footer.div("", "", "Prepared By:");
         footer.div("", "", txtDriverName);

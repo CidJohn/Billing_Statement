@@ -39,7 +39,7 @@ function TableStyle() {
     width: "75px",
     "text-align": "center",
     "font-family": "sans-serif",
-    height: "20px",
+    height: "24px",
     "font-size": "14px",
     color: "black",
   });
