@@ -7,13 +7,13 @@ export const frmTexline = [
     text: [
       {
         label: "Billing No",
-        type: "text",
+        type: "number",
         idName: "noBilling",
         value: "",
         placeholder: "Number of Billing",
         classlist: ["form-control"],
         req: true,
-        disabled: true,
+        disabled: false,
         handleLoginText: (e) => handleTextline(e),
       },
       {

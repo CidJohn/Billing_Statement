@@ -5,5 +5,17 @@
 } */
 * {
   font-family: "Arial, sans-serif";
-
 }
+
+@media print {
+  body {
+    width: 100%;
+  }
+  .content {
+    page-break-inside: avoid;
+  }
+  .page-break {
+    page-break-before: always;
+  }
+}
+
