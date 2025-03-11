@@ -9,7 +9,6 @@ async function HomeScript() {
   });
   const row = await getBillingStatement("billingStatement");
 
-  $("#noBilling").val(row.length + 1);
 }
 
 export default HomeScript;
