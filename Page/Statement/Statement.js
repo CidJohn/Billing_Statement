@@ -34,10 +34,12 @@ async function Statement(container) {
   const { col, disCol } = sampleTable;
   function handleEditWithTimer(...args) {
     handleOnEdit(...args);
-
-    setTimeout(() => {
+    let hasRendered = false;
+    setInterval(() => {
+      if (hasRendered) return;
       const dataRow = stateRow();
       if (dataRow.length > 0) {
+        hasRendered = true;
         const {
           noBilling,
           dtBilling,
@@ -109,6 +111,7 @@ async function Statement(container) {
       StateTableStyle();
     }, 1000);
   }
+
   window.onafterprint = () => {
     window.location.reload();
   };
