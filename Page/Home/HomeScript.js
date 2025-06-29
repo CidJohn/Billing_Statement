@@ -8,8 +8,16 @@ async function HomeScript() {
     $("#dtTo").val(ToDate(value));
   });
   const row = await getBillingStatement("billingStatement");
-
-  $("#noBilling").val(row.length + 1);
+  $(document).on("change", "#txtDriverName", function () {
+    const driverName = $("#txtDriverName").val();
+    let lastNumber = 0;
+    row.map((item, index) => {
+      if (item.txtDriverName == driverName) {
+        lastNumber = item.noBilling;
+      }
+    });
+    $("#noBilling").val(parseInt(lastNumber) + 1);
+  });
 }
 
 export default HomeScript;
