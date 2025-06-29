@@ -1,9 +1,10 @@
 import DocCreate from "../../Helper/DocCreate.js";
 import ListStyle from "./ListStyle.js";
+
 let toReturnVal = [];
 function List(container, items, handleOnEdit, handleOnDelete) {
-  let currentPage = 1
-  const itemsPages = 10
+  let currentPage = 1;
+  const itemsPages = 10;
   const sortItem = [...items].reverse();
 
   const div = new DocCreate(container, "div");
@@ -17,13 +18,14 @@ function List(container, items, handleOnEdit, handleOnDelete) {
     const hdtitlediv = hddiv2.div("", "hd-data", ``);
     const hdtitle = new DocCreate(hdtitlediv, "span");
 
-     const start = (currentPage - 1) * itemsPages;
-     const end = start + itemsPages;
-     const paginatedItems = sortItem.slice(start, end);
+    const start = (currentPage - 1) * itemsPages;
+    const end = start + itemsPages;
+    const paginatedItems = sortItem.slice(start, end);
 
     hdtitle.div("", "hd-no", `No`);
     hdtitle.div("", "hd-date", ` Date`);
     hdtitle.div("", "hd-name", `Name`);
+
     paginatedItems.forEach((item, index) => {
       const list = li.div("", "lst-state", "");
       const div2 = new DocCreate(list, "div");

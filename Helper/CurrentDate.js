@@ -5,13 +5,13 @@ function CurrentDate() {
 
 export const FromDate = (billingDate) => {
   const date = new Date(billingDate);
-  date.setDate(date.getDate() - 16);
+  date.setDate(date.getDate() - 14);
   return date.toISOString().split("T")[0];
 };
 
 export const ToDate = (billingDate) => {
   const date = new Date(billingDate);
-  date.setDate(date.getDate() - 1);
+  date.setDate(date.getDate());
   return date.toISOString().split("T")[0];
 };
 
