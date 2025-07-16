@@ -10,14 +10,37 @@ async function HomeScript() {
   const row = await getBillingStatement("billingStatement");
   $(document).on("change", "#txtDriverName", function () {
     const driverName = $("#txtDriverName").val();
-    let lastNumber = 0;
-    row.map((item, index) => {
-      if (item.txtDriverName == driverName) {
-        lastNumber = item.noBilling;
-      }
-    });
-    $("#noBilling").val(parseInt(lastNumber) + 1);
+    const plateNo = $("#txtPlate");
+    const route = $("#txtAssignedRoute");
+    const noTrip = $("#txtTrip");
+    const amount = $("#txtAmount");
+
+    const filteredRows = row.filter(
+      (item) => item.txtDriverName === driverName
+    );
+
+    if (filteredRows.length > 0) {
+      filteredRows.sort(
+        (a, b) => new Date(b.dtBilling) - new Date(a.dtBilling)
+      );
+
+      const latest = filteredRows[0];
+
+      plateNo.val(latest.txtPlate);
+      route.val(latest.txtAssignedRoute);
+      noTrip.val(latest.txtTrip);
+      amount.val(latest.txtAmount);
+
+      $("#noBilling").val(parseInt(latest.noBilling) + 1);
+    } else {
+      plateNo.val("");
+      route.val("");
+      noTrip.val("");
+      amount.val("");
+      $("#noBilling").val("");
+    }
   });
+
 }
 
 export default HomeScript;
