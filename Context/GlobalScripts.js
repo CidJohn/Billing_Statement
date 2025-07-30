@@ -57,25 +57,25 @@ export const handleFormLogin = async (e) => {
 export const handleTextline = (e) => {
   const value = e.target.value;
   const id = e.target.id;
-
-  frmTexline.forEach((item) => {
-    if (item.text) {
-      item.text.forEach((txtForms) => {
-        if (txtForms.idName === id) {
-          formBilling[id] = value;
-        }
-      });
-    }
-  });
 };
 
 export const handleFrmMngmt = (e) => {
   e.preventDefault();
-  const dtFrom = $("#dtFrom").val();
-  const dtTo = $("#dtTo").val();
-  const noBilling = $("#noBilling").val();
-  const chkSunday = $("#chkSunday").prop("checked");
-  formBilling = { ...formBilling, dtFrom, dtTo, noBilling, chkSunday };
+  const dtFrom = $("#dtFrom").val(),
+    dtTo = $("#dtTo").val();
+
+  frmTexline.forEach((item) => {
+    if (item.text) {
+      item.text.forEach((txtForms) => {
+        if (txtForms.idName) {
+          const id = txtForms.idName;
+          formBilling[id] = $(`#${id}`).val();
+        }
+      });
+    }
+  });
+
+  formBilling = { ...formBilling, dtFrom, dtTo };
   BillingStatement(formBilling, "billingStatement");
   window.location.hash = "/statements";
 };
