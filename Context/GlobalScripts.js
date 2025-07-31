@@ -67,8 +67,11 @@ export const handleFrmMngmt = (e) => {
   frmTexline.forEach((item) => {
     if (item.text) {
       item.text.forEach((txtForms) => {
-        if (txtForms.idName) {
-          const id = txtForms.idName;
+        const id = txtForms.idName;
+        if (txtForms.type == "checkbox") {
+          formBilling[id] = $(`#${id}`).prop("checked");
+        }
+        if (txtForms.idName && txtForms.type != "checkbox") {
           formBilling[id] = $(`#${id}`).val();
         }
       });
