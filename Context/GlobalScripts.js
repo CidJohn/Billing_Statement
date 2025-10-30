@@ -99,7 +99,7 @@ export const handleOnEdit = async (item) => {
   };
   const tableValue = await getBillingStatement("tableValue");
   const filterName = `${item.dtBilling}_${item.txtDriverName.replace(
-    " ",
+    / /g,
     "_"
   )}`;
   const keyValue =
