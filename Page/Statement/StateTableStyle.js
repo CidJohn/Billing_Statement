@@ -79,6 +79,13 @@ function StateTableStyle() {
   $(".p-item").css({
     "border-bottom": "1px solid",
   });
+
+   $("#txtPreparedBy").css({
+    "border":"none",
+     "font-family": "sans-serif",
+    "font-size": "14px",
+    padding: "5px",
+  })
 }
 
 export default StateTableStyle;
