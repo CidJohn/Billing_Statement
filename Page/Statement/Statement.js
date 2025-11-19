@@ -92,9 +92,12 @@ async function Statement(container) {
         Table(body, col, dataRow, disCol);
         const footer = new DocCreate(body, "div");
         footer.div("", "", "Prepared By:");
-        footer.div("", "", txtDriverName);
-        footer.div("", "", "Recieved By:");
-        footer.div("", "", "_________________________");
+       // footer.div("", "", txtDriverName);
+        const footerText = new DocCreate(body,"input");
+       footerText.textline("text","txtPreparedBy","","",false,txtDriverName);
+        const footer2 = new DocCreate(body, "div");
+        footer2.div("", "", "Recieved By:");
+        footer2.div("", "", "_________________________");
 
         const btnDiv = new DocCreate(body, "div");
         const contBtn = btnDiv.div("btnCont", "btn-cont", "");
