@@ -4,7 +4,7 @@ import ListStyle from "./ListStyle.js";
 let toReturnVal = [];
 function List(container, items, handleOnEdit, handleOnDelete) {
   let currentPage = 1;
-  const itemsPages = 10;
+  const itemsPages = 50;
   const sortItem = [...items].reverse();
 
   const div = new DocCreate(container, "div");
