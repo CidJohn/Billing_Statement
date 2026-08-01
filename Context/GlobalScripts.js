@@ -96,6 +96,7 @@ export const handleOnEdit = async (item) => {
     txtPlate: item.txtPlate,
     txtDriverName: item.txtDriverName,
     txtAssignedRoute: item.txtAssignedRoute,
+    txtAmount: item.txtAmount
   };
   const tableValue = await getBillingStatement("tableValue");
   const filterName = `${item.dtBilling}_${item.txtDriverName.replace(
@@ -230,3 +231,13 @@ export const handleSave = (id) => {
     update.textContent = "Update";
   }
 };
+
+export function toNumber(value) {
+    return Number(String(value).replace(/,/g, "")) || 0;
+}
+export function addComma(value) {
+    return toNumber(value).toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+}
