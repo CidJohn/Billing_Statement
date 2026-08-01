@@ -48,6 +48,7 @@ async function Statement(container) {
           txtPlate,
           txtDriverName,
           txtAssignedRoute,
+          txtAmount
         } = details();
         const { fromToFormatted, billingDateFormatted } = FormatDate(
           dtBilling,
@@ -84,6 +85,8 @@ async function Statement(container) {
         const dnameDiv = new DocCreate(dname, "p");
         dnameDiv.div("", "", "Driver Name: ");
         dnameDiv.div("#dname", "p-item", txtDriverName);
+        const HideAmt = new DocCreate(dname, "input");
+        HideAmt.textline("text","txtAmtHdr", ["hidden"],"",false, txtAmount);
 
         const assignRoute = divs2.div("", "assign-route", "");
         const assignRouteDiv = new DocCreate(assignRoute, "p");
