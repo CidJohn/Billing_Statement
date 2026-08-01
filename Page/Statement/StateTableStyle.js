@@ -86,6 +86,7 @@ function StateTableStyle() {
     "font-size": "14px",
     padding: "5px",
   })
+$(".hidden").hide();
 }
 
 export default StateTableStyle;
