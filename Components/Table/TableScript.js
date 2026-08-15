@@ -3,7 +3,7 @@ function TableScript() {
   $(document).on("change", ".txtAmount", function () {
     total = 0;
     $(".txtAmount").each(function () {
-      const value = parseFloat($(this).val()) || 0;
+      const value = toNumber($(this).val()) || 0;
       total += value;
     });
 
@@ -19,10 +19,10 @@ function TableScript() {
 
     const result = noOfTrip * hdrAmt;
 
-    $row.find(".txtAmount").val(result);
+    $row.find(".txtAmount").val(addComma(result));
 
     $(".txtAmount").each(function () {
-      const value = parseFloat($(this).val()) || 0;
+      const value = toNumber($(this).val()) || 0;
       total += value;
     });
 
