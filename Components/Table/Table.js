@@ -48,7 +48,8 @@ function Table(container, col, row, disCol = []) {
             ? toNumber(dataRow["No_of_trip"])
             : toNumber(dataRow["No. of trip"]);
         const rate = toNumber($("#txtAmtHdr").val());
-        const amt = addComma(noOfTrip * rate);
+        const comp = rate * noOfTrip;
+        const amt = addComma(comp);
 
         textline.textline(
           "text",
@@ -75,9 +76,16 @@ function Table(container, col, row, disCol = []) {
         );
         rowData[header] = dataRow[header] || "";
       });
-      const txtAmount = dataRow["Amount"];
+      const noOfTrip =
+        toNumber(dataRow["No_of_trip"]) > 0
+          ? toNumber(dataRow["No_of_trip"])
+          : toNumber(dataRow["No. of trip"]);
+      const txtAmount =
+        toNumber(dataRow["No_of_trip"]) > 0
+          ? toNumber(dataRow["Amount"])
+          : toNumber(dataRow["Amount"]) * noOfTrip;
       if (txtAmount !== undefined && !isNaN(txtAmount) && txtAmount !== 0) {
-        totalAmount += parseFloat(txtAmount);
+        totalAmount += toNumber(txtAmount);
       }
       groupedData.push(rowData);
     });
