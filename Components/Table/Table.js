@@ -1,7 +1,7 @@
 import DocCreate from "../../Helper/DocCreate.js";
 import TableScript from "./TableScript.js";
 import TableStyle from "./TableStyle.js";
-import { addComma,toNumber } from "../../Context/GlobalScripts.js";
+import { addComma, toNumber } from "../../Context/GlobalScripts.js";
 let groupedData = [];
 
 function Table(container, col, row, disCol = []) {
@@ -42,9 +42,12 @@ function Table(container, col, row, disCol = []) {
         const isDisabled = disCol.includes(header);
         const amountColumn = header === "Amount";
         const idInput = header.replace(/[^a-zA-Z0-9]/g, "");
-        
-        const noOfTrip = toNumber(dataRow["No_of_trip"]) > 0 ? toNumber(dataRow["No_of_trip"]): toNumber(dataRow["No. of trip"]);
-        const rate = toNumber($("#txtAmtHdr").val()); 
+
+        const noOfTrip =
+          toNumber(dataRow["No_of_trip"]) > 0
+            ? toNumber(dataRow["No_of_trip"])
+            : toNumber(dataRow["No. of trip"]);
+        const rate = toNumber($("#txtAmtHdr").val());
         const amt = addComma(noOfTrip * rate);
 
         textline.textline(
@@ -56,15 +59,19 @@ function Table(container, col, row, disCol = []) {
                 "class-field-text",
                 "another-class",
                 header.replace(/\s+/g, "-"),
-                idInput
+                idInput,
               ],
           "",
           false,
           dataRow[header]
-            ? toNumber(dataRow["No_of_trip"]) > 0 ?  dataRow[header] : amountColumn ? amt : dataRow[header] 
-            :  dataRow[header.replace(/\s+/g, "_").replace(".", "")] || "",
+            ? toNumber(dataRow["No_of_trip"]) > 0
+              ? dataRow[header]
+              : amountColumn
+                ? amt
+                : dataRow[header]
+            : dataRow[header.replace(/\s+/g, "_").replace(".", "")] || "",
           null,
-          isDisabled
+          isDisabled,
         );
         rowData[header] = dataRow[header] || "";
       });
